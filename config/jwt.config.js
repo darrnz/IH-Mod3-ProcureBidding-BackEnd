@@ -11,21 +11,17 @@ exports.createToken = (user) => {
 
 exports.verifyToken = (req, res, next) => {
     const { headload, signature } = req.cookies
-    if(!headload || !signature) {
-        return res.status(401).json({ errorMsg: "You can's access, please try again" })
-        jwt.verify(headload + signature, process.env.SECRET, (err, decoded) => {
-            if(err) {
-                return res.status(401).json({ errorMsg: "You can's access, please try again" })
-            }
-            User.findById(decoded.userId)
+    if (!headload || !signature) return res.status(401).json({ error: "You can't access, please try again" })
+    jwt.verify(headload + signature, process.env.SECRET, (error, decoded) => {
+        if (error) return res.status(401).json({ error: "You can't access, please try again" })
+        User.findById(decoded.userId)
             .then(user => {
                 req.user = user
                 next()
             })
-            .catch(err => {
-                res.status(401).json({ err })
+            .catch(error => {
+                res.status(401).json({ error })
                 next()
             })
-        })
-    }
+    })
 }

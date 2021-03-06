@@ -9,6 +9,7 @@ const path = require('path');
 const cors = require('cors');
 const passport = require('./config/passport.config')
 
+
 mongoose
   .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((x) => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))

@@ -15,4 +15,4 @@ const productTenderSchema = new Schema (
     }
 )
 
-module.export = model('Product', productTenderSchema)
+module.export = model('ProductTender', productTenderSchema)

@@ -3,10 +3,7 @@ const PLM = require('passport-local-mongoose')
 
 const userSchema = new Schema(
     {
-        role: {
-            type: String,
-            enum: ['Vendor', 'Purchaser', 'Admin'],
-        },
+        role: String,
         firstName: String,
         lastName: String,
         email: String,

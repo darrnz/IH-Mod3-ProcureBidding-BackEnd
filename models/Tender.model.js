@@ -19,4 +19,4 @@ const tenderSchema = new Schema (
     }
 )
 
-module.exports = model('User', tenderSchema)
+module.exports = model('Tender', tenderSchema)

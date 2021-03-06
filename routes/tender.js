@@ -16,7 +16,7 @@ router.delete('/profile/create-tender/delete-vendor/:id', deleteVendorFromTender
 router.get('profile/create-tender/list-vendor', listVendors)
 
 //Admon Products over tender
-router.router.post('/profile/create-tender/add-product/:id', addProductToTender)
+router.post('/profile/create-tender/add-product/:id', addProductToTender)
 router.delete('/profile/create-tender/delete-product/:id', deleteProductFromTender)
 
 module.exports = router
