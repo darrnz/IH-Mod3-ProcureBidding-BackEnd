@@ -7,11 +7,11 @@ const tenderSchema = new Schema (
         generalInfo: String,
         startDate: Date,
         endDate: Date,
-        idPurchaser: [],
-        idProductsTender: [],
-        idVendor:[],
-        idQuote: [],
-        idWinnerQuote: []
+        idPurchaser: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        idProductsTender: [{ type: Schema.Types.ObjectId, ref: 'ProductsTender' }],
+        idVendor:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+        idQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
+        idWinnerQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }]
     },
     {
         timestamps: true,

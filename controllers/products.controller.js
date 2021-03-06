@@ -1,15 +1,15 @@
+const mongoose = require('mongoose')
 const Product = require('../models/Product.model')
 const User = require('../models/User.models')
 
-/* exports.signin = (req, res, next) => {
-    const { password } = req.body
-    console.log(password)
-    
-    User.register({...req.body }, password)
-        .then(user => res.status(201).json({ user }))
-        .catch(err => res.status(500).json( { err }))
+/* 
+router.post('/create-product', createProduct) ok
+router.get('/list-products', listProducts) ok
+router.post('/list-products/edit/:id',editProduct) -> REvisar
 } */
 exports.createProduct = async(req, res, next) => {
+    console.log(req.body)
+    let idCreator = '604313ae962e0f2382b5fac9'
     try {
         let newProduct = await Product.create({ ...req.body })
         await Product.findByIdAndUpdate(newProduct._id, { $push: { idCreator: idCreator } }) //id del user:comprador/Creador 
@@ -22,7 +22,8 @@ exports.createProduct = async(req, res, next) => {
 
 exports.listProducts = async(req, res, next) => {
     try {
-        await Product.find({})
+        const productList = await Product.find({})
+        res.status(200).json(productList)
     } catch (err) {
         next(err) 
     }
@@ -39,11 +40,14 @@ exports.listProducts = async(req, res, next) => {
 } */
 
 exports.editProduct = async(req, res, next) => {
-    const id = req.params.id;
+    console.log(req.body)
+    /* const {id} = req.params.id; */
+    let {id} = '60431955c8471427b076c28c'
+    console.log(id)
     try {
-        let editedProduct = Product.findByIdAndUpdate(id, 
-            { $set: { ...req.params } }, { new:true});
-        res.status(201).json(editedProduct)
+        Product.findByIdAndUpdate(id, 
+            { $set: { ...req.body } } , { new:true});
+        res.status(200).json('ok')
     } catch (err) {
         next(err)
     }

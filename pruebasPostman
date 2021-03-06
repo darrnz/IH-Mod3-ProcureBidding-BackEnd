@@ -1,0 +1,20 @@
+signin
+    {
+        "role": "Vendor",
+        "firstName": "Diegoo3",
+        "lastName": "Arronipz2",
+        "email": "arrnizt3@mail.com",
+        "companyName":"asd",
+        "address":"asd",
+        "zipCode":500,
+        "password":"Admin123",
+        "rfc":"asd" 
+}
+
+crete tender 
+{
+    "tenderTitle": "Licitacion Chalecos",
+    "generalInfo":"Entrega única para el 01/08/2021",
+    "startDate": "06/30/2021",
+    "endDate":"08/30/2021"
+}

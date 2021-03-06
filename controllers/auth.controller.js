@@ -2,20 +2,21 @@ const User = require('../models/User.models')
 const { createToken } = require('../config/jwt.config')
 
 exports.signin = (req, res, next) => {
-    const { password} = req.body
+    const { password, role} = req.body
+    const loggedId = '60430f8353e46a2137797129'
     console.log(req.body)
-
-       let newUser=  User.register({...req.body }, password)
+    if(role === 'Purchaser') {
+        User.register({...req.body }, password)
+        .then(user => User.findByIdAndUpdate(loggedId, { $push: {idPurcharser: user._id } }))
+        .then(user => res.status(201).json({ user }))
+        
+        .catch(error => res.status(500).json( { error }))
+    } else {
+        let newUser=  User.register({...req.body }, password)
         .then(user => res.status(201).json({ newUser }))
         .catch(err => res.status(500).json( { err }))
+    }
 
-        /*  if(role === 'Purchaser') {
-        User.register({...req.body }, password)
-        .then(user => res.status(201).json({ user }))
-        .then(user => User.findByIdAndUpdate(loggedId, { $push: {idPurchaser: user._id } }))
-        .catch(error => res.status(500).json( { error }))
-    } else { */
-    /* }  */
 }
 
 exports.login = (req, res, next) => {

@@ -5,9 +5,10 @@ const productSchema = new Schema (
         idLocal: String,
         productDescription: String,
         boxSize: Number,
+        uom:String,
         productFamily: String,
-        idCreator: [],
-        idTender: [],
+        idCreator: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
         price: Number
     },
     {
@@ -16,4 +17,4 @@ const productSchema = new Schema (
     }
 )
 
-module.export = model('Product', productSchema)
+module.exports = model('Product', productSchema)

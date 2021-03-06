@@ -11,14 +11,12 @@ const userSchema = new Schema(
         address:String,
         zipCode:String,
         rfc:String,
-        idPurcharser: [], //se utiliza para asignar a Venderor que sepa quien es su cliente
-                        //Tender creador, Quote a quien entrega, 
-        idVendor: [],
-        idPO: [],
-        idTender: [],
-        idProducts: [],
-        idQuote: [],
-        winnedTenders:[] //Se agregan tenders a proveedor que gano
+        idPurcharser: [{ type: Schema.Types.ObjectId, ref: 'User' }], //se utiliza para asignar a Venderor que sepa quien es su cliente               //Tender creador, Quote a quien entrega, 
+        idVendor: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
+        idProducts: [{ type: Schema.Types.ObjectId, ref: 'Products' }],
+        idQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
+        winnedTenders:[{ type: Schema.Types.ObjectId, ref: 'Tender' }] //Se agregan tenders a proveedor que gano
     },
     {
         timestamps:true,

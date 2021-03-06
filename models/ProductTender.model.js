@@ -4,10 +4,10 @@ const productTenderSchema = new Schema (
     {
         quantity: Number,
         price: String,
-        idCreator: [],
-        idTender: [],
+        idCreator: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
         price: Number,
-        idProduct:[]
+        idProduct:[{ type: Schema.Types.ObjectId, ref: 'Product' }]
     },
     {
         timestamps: true,

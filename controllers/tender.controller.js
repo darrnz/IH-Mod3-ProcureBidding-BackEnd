@@ -3,23 +3,45 @@ const User = require('../models/User.models')
 const Tender = require('../models/Tender.model')
 const ProductTender = require('../models/ProductTender.model')
 
-/* exports.signin = (req, res, next) => {
-    const { password } = req.body
-    console.log(password)
-    
-    User.register({...req.body }, password)
-        .then(user => res.status(201).json({ user }))
-        .catch(err => res.status(500).json( { err }))
+/* //Admon tenders
+router.post('/profile/create-tender', createTender) ok
+router.get('/profile/tender-details/:id', tenderDetails)
+router.get('/profile/user-tenders/', listUserTender)
+router.put('/profile/edit-tender/:id', editTender)
+
+//Admon Vendors on Tenders
+router.post('/profile/create-tender/add-vendor/:id', addVendorToTender)
+router.delete('/profile/create-tender/delete-vendor/:id', deleteVendorFromTender)
+router.get('profile/create-tender/list-vendor', listVendors)
+
+//Admon Products over tender
+router.post('/profile/create-tender/add-product/:id', addProductToTender)
+router.delete('/profile/create-tender/delete-product/:id', deleteProductFromTender)
+
 } */
 
 //Admon routes Tender General
 
 exports.createTender = async(req, res, next) => {
+    let loggedId = '604313ae962e0f2382b5fac9'
     try {
         let newTender = await Tender.create({...req.body})
         await User.findByIdAndUpdate(loggedId, { $push: { idTender: newTender._id}})
-        await Tender.findByIdAndUpdate(newTender._id, { $push: { idCreator: loggedId}})
+        await Tender.findByIdAndUpdate(newTender._id, { $push: { idPurchaser: loggedId}})
         res.status(201).json(newTender)
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+exports.listUserTender = async(req, res, next) => {
+    let loggedId = '604313ae962e0f2382b5fac9'
+    try {
+       //const toPopulate = [ { path: 'projects', populate: { path: 'architects' } } ]
+        let listTender = await User.findById(loggedId).populate('idTender idProducts')
+        console.log(listTender)
+        res.json(listTender)
     } catch (err) {
         next(err)
     }
