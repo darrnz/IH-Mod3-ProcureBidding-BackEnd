@@ -9,7 +9,7 @@ router.post('/list-products/edit/:id',editProduct) -> REvisar
 } */
 exports.createProduct = async(req, res, next) => {
     console.log(req.body)
-    let idCreator = '604313ae962e0f2382b5fac9'
+    let idCreator = '6043b776affbad07b4f18241' //id purchaser creador
     try {
         let newProduct = await Product.create({ ...req.body })
         await Product.findByIdAndUpdate(newProduct._id, { $push: { idCreator: idCreator } }) //id del user:comprador/Creador 

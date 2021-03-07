@@ -15,6 +15,7 @@ const userSchema = new Schema(
         idVendor: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
         idProducts: [{ type: Schema.Types.ObjectId, ref: 'Products' }],
+        idCompany: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
         winnedTenders:[{ type: Schema.Types.ObjectId, ref: 'Tender' }] //Se agregan tenders a proveedor que gano
     },

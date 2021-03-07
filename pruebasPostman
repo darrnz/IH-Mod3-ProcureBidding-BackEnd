@@ -11,6 +11,16 @@ signin
         "rfc":"asd" 
 }
 
+createProduct
+{   
+        "idLocal": "009",
+        "productDescription": "Mouse ergonomico Logitech col.Negro",
+        "boxSize": "1",
+        "uom": "und",
+        "productFamily": "Computer Equipment"
+}
+
+
 crete tender 
 {
     "tenderTitle": "Licitacion Chalecos",
@@ -18,3 +28,26 @@ crete tender
     "startDate": "06/30/2021",
     "endDate":"08/30/2021"
 }
+
+editTender
+{   
+    "tenderTitle": "Licitacion Cascos para remodelación en local comercial 5-8  ",
+    "generalInfo":"Entrega única para el 01/06/2021, entregarse en bodega principal"
+
+}
+
+addProductToTender
+{   
+    "quantity": "2",
+    "productId":"6043b9671952ec08527ac856",
+    "loggedId": "6043b776affbad07b4f18241"
+}
+
+crear producto quote
+{   
+    "description": "Cascos rojos marcaPRUEBAAAAA TONKA",
+    "price": "200",
+    "sku": "TK01"
+}
+
+

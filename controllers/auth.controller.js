@@ -3,7 +3,7 @@ const { createToken } = require('../config/jwt.config')
 
 exports.signin = (req, res, next) => {
     const { password, role} = req.body
-    const loggedId = '60430f8353e46a2137797129'
+    const loggedId = '6043b564adcd95064356d941' //idAdmin
     console.log(req.body)
     if(role === 'Purchaser') {
         User.register({...req.body }, password)
@@ -13,7 +13,7 @@ exports.signin = (req, res, next) => {
         .catch(error => res.status(500).json( { error }))
     } else {
         let newUser=  User.register({...req.body }, password)
-        .then(user => res.status(201).json({ newUser }))
+        .then(user => res.status(201).json({ user }))
         .catch(err => res.status(500).json( { err }))
     }
 

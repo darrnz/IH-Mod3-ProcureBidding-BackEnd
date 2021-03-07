@@ -39,11 +39,15 @@ const index = require('./routes/index');
 const auth = require('./routes/auth')
 const tender = require('./routes/tender')
 const products = require('./routes/products')
+const user = require('./routes/user')
+const quote = require('./routes/quote')
 
 app.use('/', index);
-app.use('/', auth)
+app.use('/auth', auth)
 app.use('/', tender)
 app.use('/', products)
+app.use('/', user)
+app.use('/', quote)
 
 
 // Uncomment this line for production

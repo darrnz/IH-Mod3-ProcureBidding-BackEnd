@@ -3,10 +3,9 @@ const { Schema, model } = require('mongoose')
 const productTenderSchema = new Schema (
     {
         quantity: Number,
-        price: String,
+        price: Number,
         idCreator: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
-        price: Number,
         idProduct:[{ type: Schema.Types.ObjectId, ref: 'Product' }]
     },
     {
@@ -15,4 +14,4 @@ const productTenderSchema = new Schema (
     }
 )
 
-module.export = model('ProductTender', productTenderSchema)
+module.exports = model('ProductTender', productTenderSchema)

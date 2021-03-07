@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { 
     createTender, tenderDetails, editTender, listUserTender,
-    addVendorToTender, deleteVendorFromTender, listVendors,
+    tenderWinner, addVendorToTender, deleteVendorFromTender, listVendors,
     addProductToTender, deleteProductFromTender
 } = require('../controllers/tender.controller')
 
@@ -10,14 +10,14 @@ router.post('/profile/create-tender', createTender)
 router.get('/profile/tender-details/:id', tenderDetails)
 router.get('/profile/user-tenders/', listUserTender)
 router.put('/profile/edit-tender/:id', editTender)
-
+router.put('/profile/tender-details/:id/', tenderWinner)
 //Admon Vendors on Tenders
-router.post('/profile/create-tender/add-vendor/:id', addVendorToTender)
-router.delete('/profile/create-tender/delete-vendor/:id', deleteVendorFromTender)
-router.get('profile/create-tender/list-vendor', listVendors)
+router.put('/profile/create-tender/:id/add-vendor', addVendorToTender)
+router.delete('/profile/create-tender/:id/delete-vendor', deleteVendorFromTender)
+
 
 //Admon Products over tender
-router.post('/profile/create-tender/add-product/:id', addProductToTender)
-router.delete('/profile/create-tender/delete-product/:id', deleteProductFromTender)
+router.post('/profile/create-tender/:id/add-product', addProductToTender)
+router.delete('/profile/create-tender/:id/:deleteidPTender', deleteProductFromTender)
 
 module.exports = router
