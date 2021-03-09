@@ -1,5 +1,5 @@
 const User = require('../models/User.models')
-const { createToken } = require('../config/jwt.config')
+const { createToken } = require('./jwt.config')
 
 exports.signin = (req, res, next) => {
     const { password, role} = req.body
@@ -22,16 +22,16 @@ exports.signin = (req, res, next) => {
 exports.login = (req, res, next) => {
     const { user, err } = req
     const [headload, payload, signature] = createToken(user)
-    res.cookie('headload', `${headload}.${payload}`, {
+    res.cookie('headload', `${headload}.${payload}`/* , {
         //maxAge: 1000*60*30,
         sameSite: false,
         resave: true,
         saveUninitialized: false,
-    })
-    res.cookie('signature', signature, {
+    } */)
+    res.cookie('signature', signature/* , {
         httpOnly: true,
         sameSite: false
-    })
+    } */)
 
     res.status(200).json({ user })
 }

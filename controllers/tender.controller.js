@@ -119,8 +119,8 @@ exports.addProductToTender = async(req, res, next) => {
     try {
         let newTenderProd = await ProductTender.create({ ...req.body })
         await Tender.findByIdAndUpdate(idTender, { $push: { idProductsTender: newTenderProd._id } })
-        await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: idTender, idProduct: idProduct} })
-        res.status(201).json(newTenderProd)
+        let updatedNew = await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: idTender, idProduct: idProduct} })
+        res.status(201).json(updatedNew)
     } catch (err) {
         next(err)
     }

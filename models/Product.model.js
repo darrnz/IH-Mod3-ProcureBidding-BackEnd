@@ -9,7 +9,8 @@ const productSchema = new Schema (
         productFamily: String,
         idCreator: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
-        price: Number
+        price: Number,
+        quantity:Number
     },
     {
         timestamps: true,
