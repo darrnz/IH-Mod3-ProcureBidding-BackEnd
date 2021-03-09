@@ -15,7 +15,8 @@ router.post('/profile/create-tender/:id/add-vendor', addVendorToTender) ok
 router.delete('/profile/create-tender/:id/delete-vendor', deleteVendorFromTender) ok
 
 //Admon Products over tender
-router.post('/profile/create-tender/:id/add-product', addProductToTender) ok
+router.post('
+', addProductToTender) ok
 router.delete('/profile/create-tender/:id/:deleteid', deleteProductFromTender) ok
 
 } */
@@ -47,10 +48,11 @@ exports.listUserTender = async(req, res, next) => {
 }
 
 exports.tenderDetails = async(req, res, next) => {
-    const id = req.params.id
+    const { idTender } = req.params
+    console.log(req.params)
     try {
         const toPopulate = [ { path: 'idVendor', populate: { path: 'idVendor' } } ]
-        let showTender = await Tender.findById(id).populate(toPopulate)
+        let showTender = await Tender.findById(idTender).populate(toPopulate)
         res.status(201).json(showTender)
     } catch (err) {
         next(err)
@@ -84,11 +86,11 @@ exports.tenderWinner = async(req, res, next) => {
 
 //Admon routes for Vendors on Tender
 exports.addVendorToTender = async(req, res, next) => {
-    const id = req.params.id
+    const { idTender } = req.params
     const { idVendor } = req.body
     try {
-        await Tender.findByIdAndUpdate(id, { $push: { idVendor: idVendor } })
-        await User.findByIdAndUpdate(idVendor, { $push: { idTender: id} })
+        await Tender.findByIdAndUpdate(idTender, { $push: { idVendor: idVendor } })
+        await User.findByIdAndUpdate(idVendor, { $push: { idTender: idTender} })
         res.status(201).json('Successfully added vendor!')
     } catch (err) {
         next(err)
@@ -110,13 +112,15 @@ exports.deleteVendorFromTender = async(req, res, next) => {
 //Admon routes for Products on Tender
 
 exports.addProductToTender = async(req, res, next) => {
-    const id = req.params.id
-    const {productId, loggedId} = req.body
+    const  {idTender}  = req.params
+    console.log(idTender)
+    const { idProduct } = req.body
+    console.log(idProduct)
     try {
-        let newTenderProd = await ProductTender.create({...req.body})
-        await Tender.findByIdAndUpdate(id, { $push: { idProductsTender: newTenderProd._id } })
-        await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: id, idCreator: loggedId, idProduct: productId} })
-        res.status(201).json('Successfully added product!')
+        let newTenderProd = await ProductTender.create({ ...req.body })
+        await Tender.findByIdAndUpdate(idTender, { $push: { idProductsTender: newTenderProd._id } })
+        await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: idTender, idProduct: idProduct} })
+        res.status(201).json(newTenderProd)
     } catch (err) {
         next(err)
     }

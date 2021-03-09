@@ -7,7 +7,10 @@ const tenderSchema = new Schema (
         generalInfo: String,
         startDate: Date,
         endDate: Date,
-        status:String,
+        status:{
+            type: String,
+            default:'Abierta'
+        },
         idPurchaser: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idProductsTender: [{ type: Schema.Types.ObjectId, ref: 'ProductsTender' }],
         idVendor:[{ type: Schema.Types.ObjectId, ref: 'User' }],

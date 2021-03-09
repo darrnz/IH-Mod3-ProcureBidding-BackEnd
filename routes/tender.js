@@ -7,7 +7,7 @@ const {
 
 //Admon tenders
 router.post('/profile/create-tender', createTender)
-router.get('/profile/tender-details/:id', tenderDetails)
+router.get('/profile/tender-details/:idTender', tenderDetails)
 router.get('/profile/user-tenders/', listUserTender)
 router.put('/profile/edit-tender/:id', editTender)
 router.put('/profile/tender-details/:id/', tenderWinner)
@@ -17,7 +17,7 @@ router.delete('/profile/create-tender/:id/delete-vendor', deleteVendorFromTender
 
 
 //Admon Products over tender
-router.post('/profile/create-tender/:id/add-product', addProductToTender)
-router.delete('/profile/create-tender/:id/:deleteidPTender', deleteProductFromTender)
+router.post('/profile/create-tender/:idTender/add-product', addProductToTender)
+router.delete('/profile/create-tender/:idTender/:deleteidPTender', deleteProductFromTender)
 
 module.exports = router

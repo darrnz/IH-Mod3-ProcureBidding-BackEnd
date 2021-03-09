@@ -25,11 +25,11 @@ exports.listAdminDetails = async(req, res, next) => {
 }
 
 exports.purchaserDetails = async(req, res, next) => {
-    let idLoggedPurchaser = ''
+    let idLoggedPurchaser = '6043b776affbad07b4f18241'
 
     try {
         const toPopulate = [ { path: 'idTenders', populate: { path: 'idTenders' } } ]
-        const purchaserDetails = await User.findById(idLoggedVendor).populate(toPopulate)
+        const purchaserDetails = await User.findById(idLoggedPurchaser).populate('idTender')
         res.json(purchaserDetails)
     } catch (error) {
         next(error)
