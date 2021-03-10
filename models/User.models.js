@@ -11,6 +11,9 @@ const userSchema = new Schema(
         address:String,
         zipCode:String,
         rfc:String,
+        password:{
+            type:String
+        },
         idPurcharser: [{ type: Schema.Types.ObjectId, ref: 'User' }], //se utiliza para asignar a Venderor que sepa quien es su cliente               //Tender creador, Quote a quien entrega, 
         idVendor: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],

@@ -114,12 +114,12 @@ exports.deleteVendorFromTender = async(req, res, next) => {
 exports.addProductToTender = async(req, res, next) => {
     const  {idTender}  = req.params
     console.log(idTender)
-    const { idProduct } = req.body
-    console.log(idProduct)
+    const { tenderProducts } = req.body
+    console.log(req.body)
     try {
-        let newTenderProd = await ProductTender.create({ ...req.body })
-        await Tender.findByIdAndUpdate(idTender, { $push: { idProductsTender: newTenderProd._id } })
-        let updatedNew = await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: idTender, idProduct: idProduct} })
+        //let newTenderProd = await ProductTender.create({ ...req.body })
+        updatedNew = await Tender.findByIdAndUpdate(idTender, { $set: { tenderProducts: req.body} }, { new:true })
+        //let updatedNew = await ProductTender.findByIdAndUpdate(newTenderProd._id, { $push: { idTender: idTender, idProduct: idProduct} })
         res.status(201).json(updatedNew)
     } catch (err) {
         next(err)

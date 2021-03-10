@@ -10,7 +10,10 @@ const productSchema = new Schema (
         idCreator: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         idTender: [{ type: Schema.Types.ObjectId, ref: 'Tender' }],
         price: Number,
-        quantity:Number
+        quantity: {
+            type: Number,
+            default:0
+        }
     },
     {
         timestamps: true,
