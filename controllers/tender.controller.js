@@ -89,9 +89,9 @@ exports.addVendorToTender = async(req, res, next) => {
     const { idTender } = req.params
     const { idVendor } = req.body
     try {
-        await Tender.findByIdAndUpdate(idTender, { $push: { idVendor: idVendor } })
-        await User.findByIdAndUpdate(idVendor, { $push: { idTender: idTender} })
-        res.status(201).json('Successfully added vendor!')
+        let updatedTen = await Tender.findByIdAndUpdate(idTender, { $push: { idVendor: idVendor } })
+        let updatedUser = await User.findByIdAndUpdate(idVendor, { $push: { idTender: idTender} })
+        res.status(201).json(updatedTen)
     } catch (err) {
         next(err)
     }

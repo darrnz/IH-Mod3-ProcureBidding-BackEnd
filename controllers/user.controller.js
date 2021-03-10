@@ -7,8 +7,9 @@ router.get('/admin-details', listPurchasers) ok -> verificar informacion que se 
 
 exports.listVendors = async(req, res, next) => {
     try {
-        let listVendors = await User.find({role: 'Vendor'})
-        res.status(201).json(listVendors)
+        let listVendors = await User.find({ 'role': 'Vendor' })
+        console.log(listVendors)
+        res.json(listVendors)
     } catch (err) {
         next(err)
     }
