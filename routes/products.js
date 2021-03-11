@@ -7,6 +7,8 @@ const auth = require('../middleware/auth')
 
 router.post('/create-product', auth, createProduct)//ok
 router.get('/list-products', listProducts)
-router.post('/list-products/edit/:id',editProduct)
+
+//RUTAS PARA SIGUIENTES MODULOS
+/* router.post('/list-products/edit/:id',editProduct) */
 
 module.exports = router

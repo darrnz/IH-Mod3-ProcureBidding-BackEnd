@@ -5,8 +5,8 @@ const {
 } = require('../controllers/user.controller')
 
 router.get('/list-vendors', listVendors)
-router.get('/admin-details', listAdminDetails)
-router.get('/profile/vendor',vendorDetails)
+/* router.get('/admin-details', listAdminDetails) */
+/* router.get('/profile/vendor',vendorDetails) */
 router.get('/profile/purchaser', purchaserDetails)
 
 module.exports = router

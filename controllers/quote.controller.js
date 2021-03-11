@@ -14,8 +14,10 @@ router.get('/profile/:idTender/:idQuote', quoteDetails)
 router.post('/profile/:idTender/:idQuote/add-product',addProductToQuote) OK
 router.delete('/profile/:idTender/:idQuote/:idProdQuote', deleteProductFromQuote) OK
 */
+
+//RUTAS PARA SIGUIENTES MODULOS
 //Admon for Quotes
-exports.createQuote = async(req, res, next) => {
+/* exports.createQuote = async(req, res, next) => {
     let loggedVendor = '6043b82b86599407cb99bd00' // id vendor req.body?
     let { idTender } = req.params //id de la tender a la que se le hara la coti
     try {
@@ -89,6 +91,6 @@ exports.deleteProductFromQuote = async(req, res, next) => {
     } catch (err) {
         next(err)
     }
-}
+} */
 
 

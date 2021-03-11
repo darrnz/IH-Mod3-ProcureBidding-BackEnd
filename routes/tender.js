@@ -11,9 +11,10 @@ router.get('/profile/tender-details/:idTender', tenderDetails)
 router.get('/profile/user-tenders/', listUserTender)
 router.put('/profile/edit-tender/:id', editTender)
 router.put('/profile/tender-details/:id/', tenderWinner)
+
 //Admon Vendors on Tenders
-router.put('/profile/create-tender/:id/add-vendor', addVendorToTender)
-router.delete('/profile/create-tender/:id/delete-vendor', deleteVendorFromTender)
+router.put('/profile/create-tender/:tenderID/add-vendor/:idVendor', addVendorToTender)
+router.delete('/profile/create-tender/:tenderID/delete-vendor/:idVendor', deleteVendorFromTender)
 
 
 //Admon Products over tender

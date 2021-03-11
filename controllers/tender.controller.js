@@ -24,7 +24,7 @@ router.delete('/profile/create-tender/:id/:deleteid', deleteProductFromTender) o
 //Admon routes Tender General
 
 exports.createTender = async(req, res, next) => {
-    let loggedId = '6043b776affbad07b4f18241' //idcomprador
+    const { loggedId } = req.body //idcomprador
     try {
         let newTender = await Tender.create({...req.body})
         await User.findByIdAndUpdate(loggedId, { $push: { idTender: newTender._id}})
@@ -37,9 +37,9 @@ exports.createTender = async(req, res, next) => {
 
 
 exports.listUserTender = async(req, res, next) => {
-    let loggedId = '6043b776affbad07b4f18241'
+    const { loggedId } = req.body
     try {
-        let listTender = await User.findById(loggedId).populate('idTender idProductsTender')
+        let listTender = await User.findById(loggedId).populate('idTender')
         console.log(listTender)
         res.json(listTender)
     } catch (err) {
@@ -86,24 +86,27 @@ exports.tenderWinner = async(req, res, next) => {
 
 //Admon routes for Vendors on Tender
 exports.addVendorToTender = async(req, res, next) => {
-    const { idTender } = req.params
-    const { idVendor } = req.body
+    const { tenderID, idVendor } = req.params
+   /*  const  idVendor  = req.body.idVendor */
+    /* console.log(req.body) */
+     console.log(idVendor)
+     console.log(tenderID)
     try {
-        let updatedTen = await Tender.findByIdAndUpdate(idTender, { $push: { idVendor: idVendor } })
-        let updatedUser = await User.findByIdAndUpdate(idVendor, { $push: { idTender: idTender} })
-        res.status(201).json(updatedTen)
+        let updatedTen = await Tender.findByIdAndUpdate(tenderID, { $push: { idVendor: idVendor } })
+        let updatedUser = await User.findByIdAndUpdate(idVendor, { $push: { idTender: tenderID} })
+        res.status(201).json(updatedUser)
     } catch (err) {
         next(err)
     }
 }
 
 exports.deleteVendorFromTender = async(req, res, next) => {
-    const id = req.params.id
-    const { idVendor } = req.body//req.body.idVendor
+    const { tenderID, idVendor } = req.params
+    
     try {
-        await Tender.findByIdAndUpdate(id, { $pull: { idVendor: idVendor } })
-        await User.findByIdAndUpdate(idVendor, { $pull: { idTender: id} })
-        res.status(201).json('Successfully deleted vendor!')
+        let updatedTen = await Tender.findByIdAndUpdate(tenderID, { $pull: { idVendor: idVendor } })
+        let updatedUser = await User.findByIdAndUpdate(idVendor, { $pull: { idTender: tenderID} })
+        res.status(201).json(updatedUser)
     } catch (err) {
         next(err)
     }

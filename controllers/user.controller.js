@@ -15,16 +15,6 @@ exports.listVendors = async(req, res, next) => {
     }
 }
 
-exports.listAdminDetails = async(req, res, next) => {
-    const { loggedAdmin } = req.body //id del logged admin
-    try {
-        let listPurchasers = await User.findById(loggedAdmin).populate('idPurcharser')
-        res.status(201).json(listPurchasers)
-    } catch (err) {
-        next(err)
-    }
-}
-
 exports.purchaserDetails = async(req, res, next) => {
     let idLoggedPurchaser = '6043b776affbad07b4f18241'
 
@@ -37,7 +27,9 @@ exports.purchaserDetails = async(req, res, next) => {
     }
 }
 
-exports.vendorDetails = async(req, res, next) => {
+
+//RUTAS SIGUIENTES MODULOS
+/* exports.vendorDetails = async(req, res, next) => {
     let idLoggedVendor = ''
 
     try {
@@ -48,3 +40,14 @@ exports.vendorDetails = async(req, res, next) => {
         next(error)
     }
 }
+
+
+exports.listAdminDetails = async(req, res, next) => {
+    const { loggedAdmin } = req.body //id del logged admin
+    try {
+        let listPurchasers = await User.findById(loggedAdmin).populate('idPurcharser')
+        res.status(201).json(listPurchasers)
+    } catch (err) {
+        next(err)
+    }
+} */

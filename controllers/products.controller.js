@@ -9,7 +9,7 @@ router.post('/list-products/edit/:id',editProduct) -> REvisar
 } */
 exports.createProduct = async(req, res, next) => {
     console.log(req.body)
-    let idCreator = '6043b776affbad07b4f18241' //id purchaser creador
+    let  {idCreator } = req.body //id purchaser creador
     try {
         let newProduct = await Product.create({ ...req.body })
         await Product.findByIdAndUpdate(newProduct._id, { $push: { idCreator: idCreator } }) //id del user:comprador/Creador 
@@ -29,6 +29,9 @@ exports.listProducts = async(req, res, next) => {
     }
 }
 
+
+//RUTAS PARA SIGUIENTES MODULOS
+
 /* exports.productDetails = async(req, res, next) => {
     const id = req.params.id;
     try {
@@ -39,9 +42,9 @@ exports.listProducts = async(req, res, next) => {
 
 } */
 
-exports.editProduct = async(req, res, next) => {
+/* exports.editProduct = async(req, res, next) => {
     console.log(req.body)
-    /* const {id} = req.params.id; */
+    const {id} = req.params.id;
     let {id} = '60431955c8471427b076c28c'
     console.log(id)
     try {
@@ -51,7 +54,7 @@ exports.editProduct = async(req, res, next) => {
     } catch (err) {
         next(err)
     }
-}
+} */
 
 /* exports.deleteProduct = async(req, res, next) => {
     const id = req.params.id
