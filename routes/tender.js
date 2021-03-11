@@ -8,7 +8,7 @@ const {
 //Admon tenders
 router.post('/profile/create-tender', createTender)
 router.get('/profile/tender-details/:idTender', tenderDetails)
-router.get('/profile/user-tenders/', listUserTender)
+router.get('/profile/user-tenders/:loggedId', listUserTender)
 router.put('/profile/edit-tender/:id', editTender)
 router.put('/profile/tender-details/:id/', tenderWinner)
 

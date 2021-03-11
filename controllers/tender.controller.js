@@ -37,7 +37,8 @@ exports.createTender = async(req, res, next) => {
 
 
 exports.listUserTender = async(req, res, next) => {
-    const { loggedId } = req.body
+    const { loggedId } = req.params
+    console.log(loggedId)
     try {
         let listTender = await User.findById(loggedId).populate('idTender')
         console.log(listTender)

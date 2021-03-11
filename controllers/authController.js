@@ -60,7 +60,7 @@ exports.autenticarUsuario = async (req,res) => {
 
 exports.usuarioAutenticado = async (req, res) => {
     try {
-        const usuario = await User.findById(req.usuario.id).select('-password')
+        const usuario = await User.findById(req.usuario.id).select('-password').populate('idTender')
         console.log("usuario:", usuario)
         res.json({usuario})
     } catch(error){
