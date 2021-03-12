@@ -1,14 +1,9 @@
 const User = require('../models/User.models')
 
-/* 
-router.get('/list-vendors', listVendors) ok
-router.get('/admin-details', listPurchasers) ok -> verificar informacion que se imprime
- */
-
 exports.listVendors = async(req, res, next) => {
     try {
         let listVendors = await User.find({ 'role': 'Vendor' })
-        console.log(listVendors)
+        
         res.json(listVendors)
     } catch (err) {
         next(err)

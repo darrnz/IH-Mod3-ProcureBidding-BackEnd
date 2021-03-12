@@ -8,7 +8,7 @@ router.get('/list-products', listProducts) ok
 router.post('/list-products/edit/:id',editProduct) -> REvisar
 } */
 exports.createProduct = async(req, res, next) => {
-    console.log(req.body)
+    
     let  {idCreator } = req.body //id purchaser creador
     try {
         let newProduct = await Product.create({ ...req.body })

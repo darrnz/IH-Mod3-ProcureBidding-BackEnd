@@ -4,17 +4,17 @@ const { validationResult } = require('express-validator')
 const jwt = require("jsonwebtoken")
  
 exports.crearUsuario = async (req, res) => {
-    console.log(req.body)
+    
     // Revisar si hay errores
     const errores = validationResult(req)
     
     if(!errores.isEmpty()){
         return res.status(400).json({errores: errores.array()}) 
     }
-    console.log(req.body)
+    
     // EXTRAER EMAIL Y PASSWORD
     const { email, password } = req.body
-    console.log(password)
+    
     try {
         // Revisar que el usuario registrado sea único
         let usuario = await User.findOne({email})
@@ -25,7 +25,7 @@ exports.crearUsuario = async (req, res) => {
 
         // guardar el nuevo usuario
         usuario = new User(req.body)
-        console.log(usuario.password)
+        
         // Hashear el password
         const salt = await bcrypt.genSalt(10)
         usuario.password = await bcrypt.hash(password, salt)

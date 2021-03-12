@@ -43,7 +43,6 @@ const quote = require('./routes/quote')
 
 app.use('/api/usuarios', require('./routes/userAuth'))
 app.use('/api/auth', require('./routes/auth'))
-
 app.use('/', index);
 app.use('/', tender)
 app.use('/', products)

@@ -12,7 +12,7 @@ const tenderSchema = new Schema (
             default:'Abierta'
         },
         idPurchaser: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-        tenderProducts: Array,//[{ type: Schema.Types.ObjectId, ref: 'ProductsTender' }],
+        tenderProducts: Array,
         idVendor:[{ type: Schema.Types.ObjectId, ref: 'User' }],
         idQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
         idWinnerQuote: [{ type: Schema.Types.ObjectId, ref: 'Quote' }]
